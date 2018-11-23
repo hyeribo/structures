@@ -1,0 +1,24 @@
+{
+  "name": "structures",
+  "version": "1.0.0",
+  "description": "get structures",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hr5959/structures.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hr5959/structures/issues"
+  },
+  "homepage": "https://github.com/hr5959/structures#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "xlsx": "^0.14.1"
+  }
+}
