@@ -50,8 +50,9 @@ async function downloadXLSX(aoa, fileName, callback) {
     wb.Sheets['sheet1'] = ws;
     
 		// xlsx 다운로드 cb
-		XLSX.writeFileAsync(`./xlsx/${fileName}`, wb, { bookType:'xlsx', type:'base64' }, () => {
-      callback();
+		XLSX.writeFileAsync(`./xlsx/${fileName}`, wb, { bookType:'xlsx', type:'base64' }, (error) => {
+      if(error) console.log('엑셀 파일 다운로드에 실패했습니다..', error);
+      else callback();
     });
     
 		// xlsx 다운로드
