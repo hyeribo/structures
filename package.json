@@ -4,19 +4,22 @@
   "description": "get structures",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "env node index.js",
+    "structure": "env TYPE=list node index.js",
+    "inspection_c": "env TYPE=complete node index.js",
+    "inspection_t": "env TYPE=target node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hr5959/structures.git"
+    "url": "git+https://github.com/hyeribo/structures.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hr5959/structures/issues"
+    "url": "https://github.com/hyeribo/structures/issues"
   },
-  "homepage": "https://github.com/hr5959/structures#readme",
+  "homepage": "https://github.com/hyeribo/structures#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "xlsx": "^0.14.1"

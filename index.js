@@ -3,7 +3,19 @@ const util = require('./src/util');
 
 (async () => {
   try {
-		console.log('작업이 시작되었습니다.');
+    // TODO: README.md 파일 수정하기
+
+    const { TYPE } = process.env;
+    if(!TYPE) {
+      console.log('작업시작 명령어를 입력하세요.');
+      console.log(`건축물 리스트 가져오기            : npm run structure`);
+      console.log(`유지관리점검 완료 리스트 가져오기 : npm run inspection_c`);
+      console.log(`유지관리점검 대상 리스트 가져오기 : npm run inspection_t`);
+      return true;
+    }
+    
+    const jobName = TYPE === 'list' ? '건축물 리스트 가져오기' : TYPE === 'complete' ? '유지관리점검 완료 리스트 가져오기' : '유지관리점검 대상 리스트 가져오기';
+		console.log(`작업이 시작되었습니다. 작업명: ${jobName}`);
     const params = {
       sigunguCd:  process.argv[2],
       bjdongCd:  process.argv[3],
@@ -20,7 +32,7 @@ const util = require('./src/util');
 		console.log(`데이터를 가져오는중입니다. (${msg})`);
 
     // 데이터 가져오기
-    const result = await lib.getData(params);
+    const result = await lib.getData(TYPE, params);
     const { items, totalCount } = result.data.response.body;
     if(!items) {
 			console.log('데이터가 없습니다.');
@@ -30,10 +42,11 @@ const util = require('./src/util');
 
 		console.log(`엑셀파일을 다운로드합니다.`);
     // 데이터 가공
-    const xlsxData = util.makeXLSXData(items.item);
-		// 파일이름 (structure-_페이지_데이터수)
-		const msec = Date.parse(new Date().toString());	// 시간 (파일명 중복 방지)
-    const fileName = `structure(${params.sigunguCd}.${params.bjdongCd})_${msec}.xlsx`;
+    const xlsxData = util.makeXLSXData(TYPE, items.item);
+    // 시간 (파일명 중복 방지)
+    const msec = Date.parse(new Date().toString());
+    // 파일이름 (폴더/시군구코드-법정동코드_시간)
+    const fileName = `${TYPE}/${params.sigunguCd}-${params.bjdongCd}_${msec}.xlsx`;
     // 엑셀파일 다운로드
     await util.downloadXLSX(xlsxData, fileName, () => {
       console.log(`파일이 다운로드 되었습니다. (파일명: ${fileName})`);
