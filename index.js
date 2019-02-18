@@ -8,9 +8,9 @@ const util = require('./src/util');
     const { TYPE } = process.env;
     if(!TYPE) {
       console.log('작업시작 명령어를 입력하세요.');
-      console.log(`건축물 리스트 가져오기            : npm run structure`);
-      console.log(`유지관리점검 완료 리스트 가져오기 : npm run inspection_c`);
-      console.log(`유지관리점검 대상 리스트 가져오기 : npm run inspection_t`);
+      console.log(`건축물 리스트 가져오기            : npm run structure [시군구코드] [법정동코드]`);
+      console.log(`유지관리점검 완료 리스트 가져오기 : npm run inspection_c [시군구코드] [법정동코드]`);
+      console.log(`유지관리점검 대상 리스트 가져오기 : npm run inspection_t [시군구코드] [법정동코드]`);
       return true;
     }
     
