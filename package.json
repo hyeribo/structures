@@ -4,10 +4,10 @@
   "description": "get structures",
   "main": "index.js",
   "scripts": {
-    "start": "env node index.js",
-    "structure": "env TYPE=list node index.js",
-    "inspection_c": "env TYPE=complete node index.js",
-    "inspection_t": "env TYPE=target node index.js",
+    "start": "node index.js",
+    "structure": "cross-env TYPE=list node index.js",
+    "inspection_c": "cross-env TYPE=complete node index.js",
+    "inspection_t": "cross-env TYPE=target node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/hyeribo/structures#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "cross-env": "^5.2.0",
     "xlsx": "^0.14.1"
   }
 }
