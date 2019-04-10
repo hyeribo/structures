@@ -29,8 +29,8 @@ function getColumnData(type) {
       }
     } else if(type === 'complete') {
       return {
-        columns: ['rnum', 'platPlc', 'chkMthd', 'planChkMthd', 'synthOpin', 'planSynthOpin', 'chkPrdStrtDay', 'chkPrtEndDay'],
-        header: ['순번', '대지위치', '점검방법', '계획점검방법', '종합의견', '계획종합의견', '점검기간시작일', '점검기간종료일']
+        columns: ['rnum', 'platPlc', 'bldNm', 'chkMthd', 'planChkMthd', 'synthOpin', 'planSynthOpin', 'chkPrdStrtDay', 'chkPrtEndDay'],
+        header: ['순번', '대지위치', '건물명', '점검방법', '계획점검방법', '종합의견', '계획종합의견', '점검기간시작일', '점검기간종료일']
       }
     } else if(type === 'target') {
       return {
