@@ -8,6 +8,7 @@
     "structure": "cross-env TYPE=list node index.js",
     "inspection_c": "cross-env TYPE=complete node index.js",
     "inspection_t": "cross-env TYPE=target node index.js",
+    "get_code": "cross-env TYPE=code node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

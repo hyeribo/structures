@@ -1,4 +1,7 @@
 const XLSX = require('xlsx');
+const path = require('path');
+const fs = require('fs');
+
 // const fs = require('fs');
 
 function getColumnData(type) {
@@ -95,5 +98,42 @@ async function downloadXLSX(aoa, fileName, callback) {
 	}
 }
 
+function getCodes() {
+  try {
+    console.log(`엑셀 파일을 읽는중입니다. (${path.join(__dirname, '../xlsx/code/code.xls')})`);	
+    let workbook = XLSX.readFile(path.join(__dirname, '../xlsx/code/code.xls'));
+    const ws = workbook.Sheets['법정동코드 연계 자료분석용']
+    const json = XLSX.utils.sheet_to_json(ws);
+    const result = {};
+
+    json.forEach((data) => {
+      const cd = data['법정동코드'].toString();
+      const sggCd = cd.slice(0, 5);  // 시군구코드
+      const bjdCd = cd.slice(5, 10);  // 법정동코드
+
+      if(data['시군구'] === data['법정동']) return true;
+      if(!result[sggCd]) {
+        result[sggCd] = {
+          sigunguName: data['시도'] + ' ' + data['시군구'],
+          bjdongCds: [ { bjdongCd: bjdCd, bjdongName: data['법정동'] } ],
+        };
+
+      } else {
+        result[sggCd].bjdongCds.push({ bjdongCd: bjdCd, bjdongName: data['법정동'] });
+      }
+    });
+
+    // json file 만들기
+    fs.writeFile(path.join(__dirname, '../xlsx/code/code_result.json'), JSON.stringify(result), 'utf8', function(){
+      console.log('시군구, 법정동코드 json 파일이 생성되었습니다. (파일명: code_result.json)');
+    });
+
+
+  } catch (error) {
+    throw error;
+  }
+};
+
 exports.downloadXLSX = downloadXLSX;
 exports.makeXLSXData = makeXLSXData;
+exports.getCodes = getCodes;
