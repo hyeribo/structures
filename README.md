@@ -31,3 +31,11 @@ npm run inspection_t [시군구코드] [법정동코드] [대지구분코드] [�
 ```
 - 결과파일은 **xlsx/target**에 저장됩니다.
 
+### 4. 한국행정구역분류 xls 파일로 시군구/법정동 json 파일 다운로드
+```
+npm run get_code
+```
+- 변환할 파일은 **xlsx/code/code.xls** 로 저장해야합니다.
+- code.xls 파일에는 `법정동코드 연계 자료분석용` 시트가 있어야하며, 나머지 시트는 삭제하는것이 좋습니다.
+- `법정동코드 연계 자료분석용` 시트의 1열의 타이틀은 삭제하고, **A1** 셀에는 `시도` 가 위치해야합니다.
+- 파일은 [이곳](https://kssc.kostat.go.kr:8443/ksscNew_web/kssc/common/CommonBoardList.do?gubun=1&strCategoryNameCode=019&strBbsId=kascrr&categoryMenu=014) 에서 다운받을수 있습니다.
