@@ -15,21 +15,26 @@ npm install
 
 ### 1. 건축물 리스트
 ```
+cross-env TYPE=list node index.js [시군구코드] [법정동코드] [대지구분코드] [번] [지]
 npm run structure [시군구코드] [법정동코드] [대지구분코드] [번] [지]
 ```
 - 결과파일은 **xlsx/list**에 저장됩니다.
 
 ### 2. 유지관리 점검접수보고 리스트
 ```
-npm run inspection_c [시군구코드] [법정동코드] [대지구분코드] [번] [지]
+cross-env TYPE=complete node index.js [시군구코드] [법정동코드] [대지구분코드] [번] [지]
 ```
 - 결과파일은 **xlsx/complete**에 저장됩니다.
 
 ### 3. 유지관리 접수대상건축물 리스트
 ```
-npm run inspection_t [시군구코드] [법정동코드] [대지구분코드] [번] [지]
+cross-env TYPE=target node index.js [시군구코드] [법정동코드] [대지구분코드] [번] [지]
 ```
 - 결과파일은 **xlsx/target**에 저장됩니다.
+
+
+### 추가사항
+TYPE=[type] 뒤에 SELECT=Y 를 넣으면, src/util.js에서 설정한 필드의 데이터만 다운로드 할 수 있습니다.
 
 ### 4. 한국행정구역분류 xls 파일로 시군구/법정동 json 파일 다운로드
 ```

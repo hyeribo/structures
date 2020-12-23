@@ -4,10 +4,13 @@ const fs = require('fs');
 
 // const fs = require('fs');
 
-function getColumnData(type) {
+const MY_HEADER = ['도로명대지위치', '건물명', '연면적', '지상층수', '지하층수', '사용승인일', '착공일'];
+
+function getColumnData(type, select) {
   try {
+    let allColumnData;
     if(type === 'list') {
-      return {
+      allColumnData = {
         columns: [
           'rnum', 'platPlc', 'sigunguCd', 'bjdongCd', 'platGbCd', 'bun', 'ji', 'mgmBldrgstPk', 'regstrGbCd', 
           'regstrGbCdNm', 'regstrKindCd', 'regstrKindCdNm', 'newPlatPlc', 'bldNm', 'splotNm', 'block', 'lot', 'bylotCnt', 
@@ -31,24 +34,52 @@ function getColumnData(type) {
         ]
       }
     } else if(type === 'complete') {
-      return {
+      allColumnData = {
         columns: ['rnum', 'platPlc', 'bldNm', 'chkMthd', 'planChkMthd', 'synthOpin', 'planSynthOpin', 'chkPrdStrtDay', 'chkPrtEndDay'],
         header: ['순번', '대지위치', '건물명', '점검방법', '계획점검방법', '종합의견', '계획종합의견', '점검기간시작일', '점검기간종료일']
       }
     } else if(type === 'target') {
-      return {
+      allColumnData = {
         columns: ['rnum', 'platPlc', 'bldNm', 'dongNm', 'hhldCnt', 'hoCnt', 'grndFlrCnt', 'ugrndFlrCnt', 'totArea', 'useApprvDay', 'stdDay'],
         header: ['순번', '대지위치', '건물명', '동명', '세대수', '호수', '지상층수', '지하층수', '연면적', '사용승인일', '기준일']
       }
+    }
+
+    if(select === 'Y') {
+
+
+    if( select === 'Y') {
+      
+      const selectedColumnData = MY_HEADER.reduce((result, h, i) => {
+        const index = allColumnData.header.indexOf(h);
+        if(index === -1) {
+          return result;
+        } else {
+          result.columns.push(allColumnData.columns[index]);
+          result.header.push(allColumnData.header[index]);
+        }
+        return result;
+      }, {
+        columns: [], header: [],
+      });
+      console.log('===== Y =====');
+      console.log(selectedColumnData)
+      return selectedColumnData;
+    }
+
+    } else {
+      console.log('===== N =====');
+      console.log(allColumnData)
+      return allColumnData;
     }
   } catch (error) {
     throw error;
   }
 }
 // 엑셀 다운로드용 데이터 가공
-function makeXLSXData(type, data) {
+function makeXLSXData(type, data, select) {
   try {      
-    const columnData = getColumnData(type);
+    const columnData = getColumnData(type, select);
     const { columns, header } = columnData;
     const rows = [];
     rows.push(header);
