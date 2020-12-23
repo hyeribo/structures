@@ -16,7 +16,6 @@ npm install
 ### 1. 건축물 리스트
 ```
 cross-env TYPE=list node index.js [시군구코드] [법정동코드] [대지구분코드] [번] [지]
-npm run structure [시군구코드] [법정동코드] [대지구분코드] [번] [지]
 ```
 - 결과파일은 **xlsx/list**에 저장됩니다.
 
