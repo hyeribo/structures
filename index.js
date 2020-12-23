@@ -9,16 +9,20 @@ const util = require("./src/util");
     if (!TYPE) {
       console.log("작업시작 명령어를 입력하세요.");
       console.log(
-        `건축물 리스트 가져오기            : npm run structure [시군구코드] [법정동코드]`
+        `건축물 리스트 가져오기            : cross-env TYPE=list node index.js [시군구코드] [법정동코드]`
       );
       console.log(
-        `유지관리점검 완료 리스트 가져오기 : npm run inspection_c [시군구코드] [법정동코드]`
+        `유지관리점검 완료 리스트 가져오기 : cross-env TYPE=complete node index.js [시군구코드] [법정동코드]`
       );
       console.log(
-        `유지관리점검 대상 리스트 가져오기 : npm run inspection_t [시군구코드] [법정동코드]`
+        `유지관리점검 대상 리스트 가져오기 : cross-env TYPE=target node index.js [시군구코드] [법정동코드]`
       );
       console.log(
         `법정동/시군구 엑셀파일 json 데이터로 변환하기 : npm run get_code`
+      );
+
+      console.log(
+        `(옵션: SELECT=Y)`
       );
       return true;
     }
