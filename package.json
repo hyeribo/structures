@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/hyeribo/structures#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "cross-env": "^5.2.0",
     "xlsx": "^0.14.1"
   }
